@@ -11,15 +11,17 @@
 // Constructor
 BinarySearchDictionary::BinarySearchDictionary()
 {
-	sorted = false;
-  	maxNumber = 2;
-	currentNumber = 0;
-	array = (ArrayDictionaryNode*) malloc(maxNumber * sizeof(ArrayDictionaryNode));
+    ArrayDictionary();
+	// sorted = false;
+ //  	maxNumber = 2;
+	// currentNumber = 0;
+	// array = (ArrayDictionaryNode*) malloc(maxNumber * sizeof(ArrayDictionaryNode));
 }
 
 bool
 BinarySearchDictionary::addRecord( KeyType key, DataType record) {
 	sorted = false;
+    // currentNumber++;
 	return ArrayDictionary::addRecord(key, record);
 }
 
@@ -29,25 +31,34 @@ BinarySearchDictionary::findRecord( KeyType key)
 {
 	if (!sorted) {
 		sort();
+        fprintf(stderr, "once more\n");
+
+        for (int i = 0; i < currentNumber; i++) {
+            fprintf(stderr, "%s %i\n", array[i].key, (int)array[i].data);
+        }
+
 		sorted = true;
 	}
 
   	int start = 0;
     int end = currentNumber - 1;
 
-    while(end > start) {
+    while(end >= start) {
     
         int mid = (start + end) / 2;
         int result = strcmp(key, array[mid].key);
-       
-        if(result == 0) {
+
+        if(result == 0) 
+        {
             return array[mid].data;
         }
-        else if(result < 0) {
+        else if(result < 0)
+        {
             end = mid - 1;
         }
-        else {
-            start = mid+1;
+        else 
+        {
+            start = mid + 1;
         }
     }
 
@@ -59,17 +70,17 @@ BinarySearchDictionary::findRecord( KeyType key)
 void
 BinarySearchDictionary::sort()
 {
-	printf("Before\n");
+	fprintf(stderr,"Before\n");
 	for (int i = 0; i < currentNumber; i++) {
-		printf("%s\n", array[i].key);
+	   fprintf(stderr, "%s %i\n", array[i].key, (int)array[i].data);
 	}
     
     heapSort(array, currentNumber);
         // Add your code here
 
-	printf("After\n");
+	fprintf(stderr, "After\n");
 	for (int i = 0; i < currentNumber; i++) {
-		printf("%s\n", array[i].key);
+		fprintf(stderr, "%s %i\n", array[i].key, (int)array[i].data);
 	}
 }
 

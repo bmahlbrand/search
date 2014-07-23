@@ -25,7 +25,7 @@ public:
     }
 
 	bool insert(ArrayDictionaryNode node);
-	ArrayDictionaryNode *removeMin();
+	ArrayDictionaryNode removeMin();
 
 	~Heap();
 };

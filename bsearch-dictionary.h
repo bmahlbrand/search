@@ -9,9 +9,9 @@ class BinarySearchDictionary : public ArrayDictionary {
   bool sorted;
   
 protected:
-  ArrayDictionaryNode *array;
-  int maxNumber;
-  int currentNumber;
+  // ArrayDictionaryNode *array;
+  // int maxNumber;
+  // int currentNumber;
 
 public:
   // Constructor

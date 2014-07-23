@@ -12,6 +12,7 @@ ArrayDictionary::ArrayDictionary()
 {
 	maxNumber = 2;
 	currentNumber = 0;
+	// array = new ArrayDictionaryNode[maxNumber];
 	array = (ArrayDictionaryNode*) malloc(maxNumber * sizeof(ArrayDictionaryNode));
 }
 
@@ -28,7 +29,6 @@ ArrayDictionary::addRecord( KeyType key, DataType record)
 			return false;
 		}
 	}
-
 
 	if (currentNumber == maxNumber)
 	{

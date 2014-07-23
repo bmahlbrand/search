@@ -43,6 +43,7 @@ heap implementation:
 */
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "heap.h"
 // #include "array-dictionary.h"
 
@@ -51,7 +52,6 @@ Heap::Heap(int maxSize)
 	_maxSize = maxSize;
 	_last = 0;
 	_heap = (ArrayDictionaryNode*) malloc(maxSize * sizeof(ArrayDictionaryNode));
-
 }
 
 Heap::~Heap()
@@ -106,20 +106,21 @@ Heap::insert(ArrayDictionaryNode node)
 		// 	break;
 		// }
 	}//while
+
 	return true;
 }
 
-ArrayDictionaryNode *
+ArrayDictionaryNode 
 Heap::removeMin()
 {
 	if(_last == 0) //heap is empty
 	{
-		return NULL;
+		ArrayDictionaryNode tmp;
+		return tmp;
 	}
 	//heap isn't empty, get min key
 
-	ArrayDictionaryNode *min = new ArrayDictionaryNode();
-	min = &_heap[0];
+	ArrayDictionaryNode min = _heap[0];
 
 	//sub root w/last element
 	_heap[0] = _heap[_last-1];
@@ -158,6 +159,7 @@ Heap::removeMin()
 			break;
 		}
 	}//while
+	
 	return min;
 }
 
@@ -165,15 +167,17 @@ void
 heapSort(ArrayDictionaryNode *array, int n)
 {
 	Heap heap(n);
+
 	//fill heap w/numbers
 	for (int i = 0; i < n; i++) //takes O(logn)
 	{
 		heap.insert(array[i]);
 	}
+	
 	//put numbers back in array
 	for (int i = 0; i < n; i++) //takes O(logn)
 	{
-		array[i] = *heap.removeMin();
+		array[i] = heap.removeMin();
 	}
 	//array is now sorted in ascending order in O(logn)
 }

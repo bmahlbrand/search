@@ -14,7 +14,7 @@ struct HashNode {
 class HashDictionary : public Dictionary {
 	// Add any member variables you need
 	int nElements;
-	HashNode *_buckets[MaxBuckets];
+	HashNode **_buckets;
   
 public:
   // Constructor

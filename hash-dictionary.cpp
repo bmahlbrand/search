@@ -7,6 +7,7 @@
 
 HashDictionary::HashDictionary()
 {
+	_buckets = new HashNode*[MaxBuckets];
 	nElements = 0;
 	for (int i = 0; i < MaxBuckets; i++) {
 	  	_buckets[i] = NULL;
@@ -68,11 +69,12 @@ HashDictionary::findRecord( KeyType key)
 		if (strcmp(current->_key, key) == 0)
 		{
 			// printf("%i\n", *((int*)data));
-			return current;
+			return current->_data;
 		}
 
 		current = current->_next;
 	}
+	
 	return NULL;
 }
 
@@ -120,7 +122,7 @@ HashDictionary::keys(int * n)
 	int i = 0;
 	for (int h = 0; h < MaxBuckets; h++) {
 		HashNode * n = _buckets[h];
-		while (n!=NULL) {
+		while (n != NULL) {
 			a[i] = n->_key;
 			i++;
 			n = n->_next;

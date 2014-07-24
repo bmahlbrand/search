@@ -5,6 +5,7 @@
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType): MiniHTTPD(port)
 {
 	Dictionary * dict = NULL;
+	
 	// Create dictionary of the indicated type
 	if (dictionaryType == ArrayDictionaryType) 
 	{
@@ -66,6 +67,111 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		fprintf(fout, "</FORM></CENTER>\n");
 		return;
 	} 
+	else if (strcmp(documentRequested, "/index.html") == 0)
+	{
+		FILE *fp;
+	    char line[100000];
+	    size_t len = 0;
+	    char read;
+	    fp = fopen("index.html", "r");
+	    // fprintf(fout, "did\n");
+	    if (fp == NULL){
+	    	fprintf(stderr, "%s\n", "failed");
+	    	return;
+	    }
+	    char c;
+	    while(1)
+	    {
+      		c = fgetc(fp);
+      		if( feof(fp) )
+      		{
+          		break ;
+      		}
+      		fprintf(fout,"%c", c);
+   		}
+	    // if (fgets(line, 100000, fp) != NULL)
+	    // {
+	    //     // printf("Retrieved line of length %zu :\n", read);
+	    //     fprintf(stderr,"%s", line);
+	    // }
+		   //  fprintf(stderr, "%s\n","bawls" );
+
+	    
+	    if (ferror(fp)) {
+
+	        /* handle error */
+	    }
+	    // delete line;
+	    fclose(fp);
+	    return;
+	}	
+	else if (strncmp(documentRequested, "/bootstrap", 10) == 0)
+	{
+		FILE *fp;
+
+	    fp = fopen(documentRequested+1, "r");
+	    // fprintf(fout, "did\n");
+	    if (fp == NULL){
+	    	fprintf(stderr, "%s\n", "failed");
+	    	return;
+	    }
+	    
+	    char c;
+	    while(1)
+	    {
+      		c = fgetc(fp);
+      		if( feof(fp) )
+      		{
+          		break ;
+      		}
+      		fprintf(fout,"%c", c);
+   		}
+
+	    if (ferror(fp)) {
+
+	        /* handle error */
+	    }
+	    fclose(fp);
+	    return;	
+	}
+	else if (strncmp(documentRequested, "/jumbotron.css", 14) == 0)
+	{
+				FILE *fp;
+	    // char line[10000000];
+	    // size_t len = 0;
+	    // char read;
+	    fp = fopen(documentRequested+1, "r");
+	    // fprintf(fout, "did\n");
+	    if (fp == NULL){
+	    	fprintf(stderr, "%s\n", "failed");
+	    	return;
+	    }
+	    char c;
+	    while(1)
+	    {
+      		c = fgetc(fp);
+      		if( feof(fp) )
+      		{
+          		break ;
+      		}
+      		fprintf(fout,"%c", c);
+   		}
+	    // if (fgets(line, 100000, fp) != NULL)
+	    // {
+	    //     // printf("Retrieved line of length %zu :\n", read);
+	    //     fprintf(stderr,"%s", line);
+	    // }
+		   //  fprintf(stderr, "%s\n","bawls" );
+
+	    
+	    if (ferror(fp)) {
+
+	        /* handle error */
+	    }
+	    // delete line;
+	    fclose(fp);
+	    return;	
+	}
 	// TODO: The words to search in "documentRequested" are in the form
 	// /search?word=a+b+c
 	//
@@ -84,7 +190,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
 		int wc = wordCount(documentRequested);
 		fprintf(stderr, "%i\n", wc);
-		char *words[256000] = {NULL};
+		char *words[256] = {NULL};
 		// for (int i = 0; i < wc; i++)
 		// {
 		// 	words[i] = NULL;
@@ -101,6 +207,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				wordBuffer[bufferCount] = '\0';
 				bufferCount = 0;
 				words[newWords] = strdup(wordBuffer);
+				memset(wordBuffer, '\0', 256);
 				newWords++;
 				documentRequested++;
 			} 

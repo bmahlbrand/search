@@ -1,7 +1,7 @@
 /*
-  Copyright (c) 2005
-  Gustavo Rodriguez-Rivera
-  All rights reserved. 
+	Copyright (c) 2005
+	Gustavo Rodriguez-Rivera
+	All rights reserved. 
 
 This work was developed by the author(s) at Purdue University
 during 2005.
@@ -28,20 +28,20 @@ MERCHANTABILITY AND FITNESS FOR ANY PARTICULAR PURPOSE.
 // test it. Kill the server when not in use. Do not leave it running.
 //
 class MiniHTTPD {
-  int _port;
+	int _port;
  public:
-  // Create a new instance of the HTTP server
-  MiniHTTPD( int port );
+	// Create a new instance of the HTTP server
+	MiniHTTPD( int port );
 
-  // When a request arrives this method is called.
-  // The argument "out" is a FILE * descriptor that will be used
-  // to send the repsonse using formatted output with fprintf.
-  // The argument "documentRequested" contains the document requested.
-  // You need to redefine "dispatch" in a subclass
-  // to do something useful. 
-  virtual void dispatch( FILE * out, const char * documentRequested );
+	// When a request arrives this method is called.
+	// The argument "out" is a FILE * descriptor that will be used
+	// to send the repsonse using formatted output with fprintf.
+	// The argument "documentRequested" contains the document requested.
+	// You need to redefine "dispatch" in a subclass
+	// to do something useful. 
+	virtual void dispatch( FILE * out, const char * documentRequested );
 
-  // Wait for incoming requests. The method never returns
-  void run();
+	// Wait for incoming requests. The method never returns
+	void run();
 };
 

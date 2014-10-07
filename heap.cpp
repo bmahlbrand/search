@@ -75,10 +75,8 @@ Heap::~Heap()
 // }
 
 bool
-Heap::insert(ArrayDictionaryNode node)
-{
-	if (_last == _maxSize)
-	{
+Heap::insert(ArrayDictionaryNode node) {
+	if (_last == _maxSize) {
 		return false;
 	}
 
@@ -88,8 +86,7 @@ Heap::insert(ArrayDictionaryNode node)
 	int child = _last - 1;
 	int parent = hparent(child);
 
-	while (child > 0 && strcmp(_heap[child].key, _heap[parent].key) < 0)
-	{
+	while (child > 0 && strcmp(_heap[child].key, _heap[parent].key) < 0) {
 		//try to swap if we haven't reached root
 		// if (heap[child] < heap[parent])
 		// {
@@ -138,8 +135,7 @@ Heap::removeMin()
 	{
 		//get smallest child between l and r
 		int minChild = l;
-		if(r < _last && strcmp(_heap[r].key, _heap[l].key) < 0)
-		{
+		if(r < _last && strcmp(_heap[r].key, _heap[l].key) < 0) {
 			minChild = r;
 		}
 

@@ -22,8 +22,8 @@ main( int argc, char **argv)
 
 	for ( i = 0; i < max; i++) {
 		char key[20];
-		int k = i%79;
-		if (k%2==0) {
+		int k = i % 79;
+		if (k % 2 == 0) {
 			// Remove even keys
 			sprintf(key, "k%d", k);
 			dict->removeElement(key);
@@ -40,11 +40,14 @@ main( int argc, char **argv)
 			assert(data==NULL);
 		}
 		else {
-			assert ((int)data == k);
+			// void * gradev;
+  			int dat;
+			dat = (int)data;
+			assert (dat == k);
 		}
 	}
 
-dict->print();
+	// dict->print();
 	dict->check();
 
 	printf(">>> test-avl passed\n\n");

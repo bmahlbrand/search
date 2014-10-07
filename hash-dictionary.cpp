@@ -5,8 +5,7 @@
 #include <string.h>
 #include "hash-dictionary.h"
 
-HashDictionary::HashDictionary()
-{
+HashDictionary::HashDictionary() {
 	_buckets = new HashNode*[MaxBuckets];
 	nElements = 0;
 	for (int i = 0; i < MaxBuckets; i++) {
@@ -26,14 +25,11 @@ HashDictionary::hash(KeyType key) {
 
 // Add a record to the dictionary. Returns false if key already exists
 bool
-HashDictionary::addRecord( KeyType key, DataType data)
-{
+HashDictionary::addRecord( KeyType key, DataType data) {
 	int h = hash(key);
 	HashNode *current = _buckets[h];
-	while (current != NULL)
-	{
-		if (strcmp(current->_key, key) == 0)
-		{
+	while (current != NULL) {
+		if (strcmp(current->_key, key) == 0) {
 			current->_data = data;
 			return false;
 	    }
@@ -54,20 +50,16 @@ HashDictionary::addRecord( KeyType key, DataType data)
 
 // Find a key in the dictionary and return corresponding record or NULL
 DataType
-HashDictionary::findRecord( KeyType key)
-{
+HashDictionary::findRecord( KeyType key) {
 	int h = hash(key);
 	HashNode *current = _buckets[h];
 
-	if (current == NULL)
-	{
+	if (current == NULL) {
 		return NULL;
 	}
 
-	while (current != NULL)
-	{
-		if (strcmp(current->_key, key) == 0)
-		{
+	while (current != NULL)	{
+		if (strcmp(current->_key, key) == 0) {
 			// printf("%i\n", *((int*)data));
 			return current->_data;
 		}
@@ -80,21 +72,15 @@ HashDictionary::findRecord( KeyType key)
 
 // Removes one element from the table
 bool
-HashDictionary::removeElement(KeyType key)
-{
+HashDictionary::removeElement(KeyType key) {
 	int h = hash(key);
 	HashNode *current = _buckets[h];
 	HashNode *prev = NULL;
-	while (current != NULL)
-	{
-	    if (strcmp(current->_key, key) == 0)
-	    {
-		    if (prev != NULL) 
-		    {
+	while (current != NULL) {
+	    if (strcmp(current->_key, key) == 0) {
+		    if (prev != NULL) {
 		    	prev->_next = current->_next;   
-		    }
-		    else
-		    {
+		    } else {
 		    	_buckets[h] = current->_next;
 		    }
 	    	//entry contains key, substitute data
@@ -114,8 +100,7 @@ HashDictionary::removeElement(KeyType key)
 // Returns all the elements in the table as an array of strings.
 // *n is the size of the table and it is returned by reference
 KeyType *
-HashDictionary::keys(int * n)
-{
+HashDictionary::keys(int * n) {
 	KeyType * a = (KeyType *) malloc(nElements * sizeof(KeyType));
 
 	*n = nElements;

@@ -20,7 +20,7 @@ class AVLDictionary : public Dictionary {
 public:
   // Constructor
   AVLDictionary();
-
+  void preorder(AVLNode * morph);
   // Restructure tree starting at "node"
   void restructure(AVLNode * node);
   
@@ -29,7 +29,7 @@ public:
   
   // Find a key in the dictionary and return corresponding record or NULL
   DataType findRecord( KeyType key);
-
+  AVLNode *findNode(KeyType key);
   // Removes one element from the table
   bool removeElement(KeyType key);
 
@@ -49,4 +49,3 @@ public:
   void print();
 
 };
-

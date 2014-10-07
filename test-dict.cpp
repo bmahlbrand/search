@@ -6,7 +6,7 @@
 
 #include "dictionary.h"
 #include "array-dictionary.h"
-// #include "avl-dictionary.h"
+#include "avl-dictionary.h"
 #include "bsearch-dictionary.h"
 #include "hash-dictionary.h"
 
@@ -78,10 +78,10 @@ void test2(Dictionary * dict)
 
 void test3(Dictionary * dict)
 {
-  printf("%i\n", (int)NULL);
+  // printf("%i\n", (int)NULL);
   for (int i=0; i<sizeof(students)/sizeof(Student);i++) {
     bool e;
-    printf("add %s %d\n", students[i].name, students[i].grade);
+    // printf("add %s %d\n", students[i].name, students[i].grade);
     e = dict->addRecord(students[i].name, (void*) students[i].grade);
     assert(e);
   }
@@ -93,7 +93,7 @@ void test3(Dictionary * dict)
     void * gradev;
     gradev = dict->findRecord(students[i].name);
     grade = (int)gradev;
-    printf("found %s %d\n", students[i].name, grade);
+    // printf("found %s %d\n", students[i].name, grade);
     // assert(grade==students[i].grade);
   }
 
@@ -239,9 +239,9 @@ main( int argc, char **argv)
   else if (!strcmp(dictType, "hash")) {
 	  dict = new HashDictionary();
   }
-  // else if (!strcmp(dictType, "avl")) {
-	 //  dict = new AVLDictionary();
-  // }
+  else if (!strcmp(dictType, "avl")) {
+	  dict = new AVLDictionary();
+  }
   else if (!strcmp(dictType, "bsearch")) {
 	  dict = new BinarySearchDictionary();
   }

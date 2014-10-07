@@ -8,8 +8,7 @@
 #include "array-dictionary.h"
 
 // Constructor
-ArrayDictionary::ArrayDictionary()
-{
+ArrayDictionary::ArrayDictionary() {
 	maxNumber = 2;
 	currentNumber = 0;
 	// array = new ArrayDictionaryNode[maxNumber];
@@ -18,11 +17,8 @@ ArrayDictionary::ArrayDictionary()
 
 // Add a record to the dictionary. Returns false if key already exists
 bool
-ArrayDictionary::addRecord( KeyType key, DataType record)
-{	
-
-	for (int i = 0; i < currentNumber; i++)
-	{
+ArrayDictionary::addRecord( KeyType key, DataType record ) {	
+	for (int i = 0; i < currentNumber; i++) {
 		if (strcmp(array[i].key, key) == 0)
 		{
 			array[i].data = record;
@@ -30,8 +26,7 @@ ArrayDictionary::addRecord( KeyType key, DataType record)
 		}
 	}
 
-	if (currentNumber == maxNumber)
-	{
+	if (currentNumber == maxNumber)	{
 		resize();
 	}
 

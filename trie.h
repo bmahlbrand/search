@@ -17,7 +17,7 @@ typedef struct trieNode {
 } trieNode;
 
 class PrefixTrie {
-	trieNode *_root;
+	rootNode *_root;
 	PrefixTrie();
 	~PrefixTrie();
 public:

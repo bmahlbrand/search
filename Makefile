@@ -50,4 +50,4 @@ minihttpd: minihttpd.h minihttpd.cpp
 	g++ -g -o minihttpd -DSTANDALONE minihttpd.cpp -lnsl -m32
 
 clean:
-	rm -f *.o minihttpd search-engine test-avl test-dict core
+	rm -f *.o minihttpd search-engine test-avl test-dict core testall

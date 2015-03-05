@@ -2,7 +2,8 @@
 #include <stdio.h>
 
 PrefixTrie::PrefixTrie() {
-	_root = new trieNode();
+	_root = new rootNode();
+	_root->_set = calloc(26, sizeof(char));
 }
 
 PrefixTrie::~PrefixTrie() {
